@@ -2,6 +2,40 @@
 
 using namespace vex;
 competition Competition;
+int autonToRun = 0;
+
+class Button
+{
+  public:
+    int x, y, width, height;
+    std::string text;
+    vex::color buttonColor, textColor;
+    
+    Button(int x, int y, int width, int height, std::string text, vex::color buttonColor, vex::color textColor)
+    : x(x), y(y), width(width), height(height), text(text), buttonColor(buttonColor), textColor(textColor){}
+
+    void render()
+    {
+      Brain.Screen.setPenColor(buttonColor);
+      Brain.Screen.drawRectangle(x, y, width, height, buttonColor);
+      Brain.Screen.setPenColor(textColor);
+      Brain.Screen.printAt(x + 15, y + 15, false, text.c_str());
+    }
+
+    bool isClicked()
+    {
+      if(Brain.Screen.pressing() && Brain.Screen.xPosition() >= x && Brain.Screen.xPosition() <= x + width &&
+      Brain.Screen.yPosition() >= y && Brain.Screen.yPosition() <= y + width) return true;
+      return false;
+    }
+};
+
+Button autonButtons[] = {
+  Button(10, 10, 150, 50, "Auton Red 1", vex::blue, vex::black),
+  Button(170, 10, 150, 50, "Auton Red 2", vex::yellow, vex::black),
+  Button(10, 70, 150, 50, "Auton Blue 1", vex::yellow, vex::black),
+  Button(170, 70, 150, 50, "Auton Blue 2", vex::yellow, vex::black)
+};
 
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
@@ -23,7 +57,7 @@ competition Competition;
 
 Drive chassis(
 
-//Specify your drive setup below. There are seven options:
+//Specify your drive setup below. There are eight options:
 //ZERO_TRACKER_NO_ODOM, ZERO_TRACKER_ODOM, TANK_ONE_ENCODER, TANK_ONE_ROTATION, TANK_TWO_ENCODER, TANK_TWO_ROTATION, HOLONOMIC_TWO_ENCODER, and HOLONOMIC_TWO_ROTATION
 //For example, if you are not using odometry, put ZERO_TRACKER_NO_ODOM below:
 ZERO_TRACKER_NO_ODOM,
@@ -100,7 +134,7 @@ void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   default_constants();
-
+/**
   while(auto_started == false){            //Changing the names below will only change their names on the
     Brain.Screen.clearScreen();            //brain screen for auton selection.
     switch(current_auton_selection){       //Tap the brain screen to cycle through autons.
@@ -137,6 +171,7 @@ void pre_auton(void) {
     }
     task::sleep(10);
   }
+  */
 }
 
 void autonomous(void) {
@@ -168,7 +203,7 @@ void autonomous(void) {
       break;
  }
 }
-z
+
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
@@ -211,8 +246,36 @@ int main() {
   // Run the pre-autonomous function.
   pre_auton();
 
-  // Prevent main from exiting with an infinite loop.
-  while (true) {
-    wait(100, msec);
+  Brain.Screen.clearScreen(vex::black);
+  for(int i = 0; i < 4; i++)
+  {
+    if(i == 0) {
+      autonButtons[i].buttonColor = vex::blue;
+    } else {
+      autonButtons[i].buttonColor = vex::yellow;
+    }
+    autonButtons[i].render();
+  }
+  Brain.Screen.render();
+
+  while(true)
+  {
+    if(!Competition.isEnabled())
+    {
+      Brain.Screen.clearScreen(vex::black);
+      for(int i = 0; i < 4; i++)
+      {
+        if(autonButtons[i].isClicked())
+        {
+          autonButtons[autonToRun].buttonColor = vex::yellow;
+          autonButtons[i].buttonColor = vex::blue;
+          autonToRun = i;
+        }
+        autonButtons[i].render();
+      }
+    }
+
+    Brain.Screen.render();
+    vex::task::sleep(7);
   }
 }
