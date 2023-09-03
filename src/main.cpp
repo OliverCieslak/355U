@@ -4,6 +4,7 @@ using namespace vex;
 competition Competition;
 int autonToRun = 0;
 
+// Button from: https://www.vexforum.com/t/auton-selector/71511/5
 class Button
 {
   public:
