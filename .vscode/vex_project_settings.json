@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "355U",
+		"slot": 1,
+		"description": "Uses JAR-Template",
+		"platform": "V5",
+		"creationDate": "Fri, 11 Aug 2023 07:55:37 GMT",
+		"language": "cpp",
+		"sdkVersion": "V5_20220726_10_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.5.0",
+		"json": 1
+	}
+}
