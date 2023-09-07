@@ -3,6 +3,13 @@ using namespace vex;
 extern brain Brain;
 
 // VEXcode devices
+// VEXcode device constructors
+extern motor ml1;
+extern motor ml2;
+extern motor mlpto;
+extern motor mr1;
+extern motor mrpto;
+extern motor mr2;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

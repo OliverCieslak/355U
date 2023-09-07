@@ -8,6 +8,13 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
+motor ml1 = motor(PORT15,false);
+motor ml2 = motor(PORT11,true);
+motor mlpto = motor(PORT13,true);
+
+motor mr1 = motor(PORT10,true);
+motor mrpto = motor(PORT14,true);
+motor mr2 = motor(PORT11,false);
 
 // VEXcode generated functions
 
