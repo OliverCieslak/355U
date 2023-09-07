@@ -207,6 +207,16 @@ void autonomous(void) {
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
+/*---------------------------------------------------------------------------*/
+bool pneumaticState = false;
+void pneumaticButtonToggle(void) {
+
+  pneumaticState = ! pneumaticState;
+  p.set(pneumaticState); 
+}
+
+/*---------------------------------------------------------------------------*/
+/*                                                                           */
 /*                              User Control Task                            */
 /*                                                                           */
 /*  This task is used to control your robot during the user control phase of */
@@ -243,7 +253,8 @@ int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
-
+  master.ButtonL1.pressed(pneumaticButtonToggle);
+  
   // Run the pre-autonomous function.
   pre_auton();
 

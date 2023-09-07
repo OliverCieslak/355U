@@ -16,6 +16,9 @@ motor mr1 = motor(PORT10,true);
 motor mrpto = motor(PORT14,true);
 motor mr2 = motor(PORT11,false);
 
+digital_out p = digital_out(Brain.ThreeWirePort.A);
+vex::controller master(vex::controllerType::primary);
+
 // VEXcode generated functions
 
 

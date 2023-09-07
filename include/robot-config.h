@@ -11,6 +11,9 @@ extern motor mr1;
 extern motor mrpto;
 extern motor mr2;
 
+extern digital_out p;
+extern vex::controller master;
+
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
