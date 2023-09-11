@@ -11,7 +11,11 @@ extern motor mr1;
 extern motor mrpto;
 extern motor mr2;
 
-extern digital_out p;
+extern digital_out A;
+extern digital_out B;
+extern digital_out C;
+extern digital_out D;
+
 extern vex::controller master;
 
 /**

@@ -213,12 +213,14 @@ bool pneumaticStateB = false;
 void pneumaticButtonToggleY(void) {
 
   pneumaticStateY = ! pneumaticStateY;
-  p.set(pneumaticStateY); 
+  B.set(pneumaticStateY); 
+  A.set(pneumaticStateY); 
 }
 void pneumaticButtonToggleB(void) {
 
   pneumaticStateB = ! pneumaticStateB;
-  p.set(pneumaticStateB); 
+  C.set(pneumaticStateB); 
+  D.set(pneumaticStateB); 
 }
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
