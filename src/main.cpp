@@ -208,13 +208,18 @@ void autonomous(void) {
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*---------------------------------------------------------------------------*/
-bool pneumaticState = false;
-void pneumaticButtonToggle(void) {
+bool pneumaticStateY = false;
+bool pneumaticStateB = false;
+void pneumaticButtonToggleY(void) {
 
-  pneumaticState = ! pneumaticState;
-  p.set(pneumaticState); 
+  pneumaticStateY = ! pneumaticStateY;
+  p.set(pneumaticStateY); 
 }
+void pneumaticButtonToggleB(void) {
 
+  pneumaticStateB = ! pneumaticStateB;
+  p.set(pneumaticStateB); 
+}
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
@@ -253,8 +258,9 @@ int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
-  master.ButtonL1.pressed(pneumaticButtonToggle);
-  
+  master.ButtonY.pressed(pneumaticButtonToggleY);
+  master.ButtonB.pressed(pneumaticButtonToggleB); 
+
   // Run the pre-autonomous function.
   pre_auton();
 
