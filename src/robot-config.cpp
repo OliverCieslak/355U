@@ -20,6 +20,8 @@ digital_out A = digital_out(Brain.ThreeWirePort.A);
 digital_out B = digital_out(Brain.ThreeWirePort.B);
 digital_out C = digital_out(Brain.ThreeWirePort.C);
 digital_out D = digital_out(Brain.ThreeWirePort.D);
+digital_out E = digital_out(Brain.ThreeWirePort.E);
+digital_out F = digital_out(Brain.ThreeWirePort.F);
 vex::controller master(vex::controllerType::primary);
 
 // VEXcode generated functions

@@ -5,6 +5,7 @@ competition Competition;
 int autonToRun = 0;
 
 // Button from: https://www.vexforum.com/t/auton-selector/71511/5
+//The LCD screen has a resolution of 480x240 pixels
 class Button
 {
   public:
@@ -210,6 +211,7 @@ void autonomous(void) {
 /*---------------------------------------------------------------------------*/
 bool pneumaticStateY = false;
 bool pneumaticStateB = false;
+bool pneumaticStateE = false;
 void pneumaticButtonToggleY(void) {
 
   pneumaticStateY = ! pneumaticStateY;
@@ -221,6 +223,12 @@ void pneumaticButtonToggleB(void) {
   pneumaticStateB = ! pneumaticStateB;
   C.set(pneumaticStateB); 
   D.set(pneumaticStateB); 
+}
+void pneumaticButtonToggleE(void) {
+
+  pneumaticStateE = ! pneumaticStateE;
+  E.set(pneumaticStateE); 
+  F.set(pneumaticStateE); 
 }
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
@@ -262,8 +270,10 @@ int main() {
   Competition.drivercontrol(usercontrol);
   master.ButtonY.pressed(pneumaticButtonToggleY);
   master.ButtonB.pressed(pneumaticButtonToggleB); 
+  master.ButtonDown.pressed(pneumaticButtonToggleE);
 
   // Run the pre-autonomous function.
+  //The LCD screen has a resolution of 480x240 pixels
   pre_auton();
 
   Brain.Screen.clearScreen(vex::black);

@@ -15,6 +15,8 @@ extern digital_out A;
 extern digital_out B;
 extern digital_out C;
 extern digital_out D;
+extern digital_out E;
+extern digital_out F;
 
 extern vex::controller master;
 
