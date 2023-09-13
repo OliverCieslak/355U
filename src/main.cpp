@@ -6,6 +6,8 @@ int autonToRun = 0;
 
 // Button from: https://www.vexforum.com/t/auton-selector/71511/5
 //The LCD screen has a resolution of 480x240 pixels
+//vex::color c = vex::color( 0, 30, 200 );
+    //Brain.Screen.setFillColor( c );
 class Button
 {
   public:
@@ -15,7 +17,7 @@ class Button
     
     Button(int x, int y, int width, int height, std::string text, vex::color buttonColor, vex::color textColor)
     : x(x), y(y), width(width), height(height), text(text), buttonColor(buttonColor), textColor(textColor){}
-
+    vex::color Yellow2 = vex::color(255, 215, 0);
     void render()
     {
       Brain.Screen.setPenColor(buttonColor);
@@ -31,12 +33,14 @@ class Button
       return false;
     }
 };
-
+// lets only have one auton button and make it switch bewtween autons. 
+// one drive mode button.
+//logo on right side of brain could also function as a button. 
 Button autonButtons[] = {
   Button(10, 10, 150, 50, "Auton Red 1", vex::blue, vex::black),
-  Button(170, 10, 150, 50, "Auton Red 2", vex::yellow, vex::black),
-  Button(10, 70, 150, 50, "Auton Blue 1", vex::yellow, vex::black),
-  Button(170, 70, 150, 50, "Auton Blue 2", vex::yellow, vex::black)
+  Button(170, 10, 150, 50, "Auton Red 2", vex::Yellow2, vex::black),
+  Button(10, 70, 150, 50, "Auton Blue 1", vex::Yellow2, vex::black),
+  Button(170, 70, 150, 50, "Auton Blue 2", vex::Yellow2, vex::black)
 };
 
 /*---------------------------------------------------------------------------*/
